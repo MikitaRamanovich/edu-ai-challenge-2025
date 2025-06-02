@@ -1,0 +1,16 @@
+You are a knowledgeable software architect helping design a backend system for a new application. Apply **Chain-of-Thought (CoT) reasoning** to analyze the following requirements and recommend the most appropriate type of database. Justify your decision step-by-step.
+
+Requirements:
+- The app is a social platform with millions of users.
+- It needs to store user profiles, user posts, and the connections between users (like friends or followers).
+- The database must support high read speeds.
+- The expected workload is 80% read operations and 20% write operations.
+- Scalability is important as the user base is expected to grow continuously.
+
+Your task:
+→ Break down the requirements one-by-one.
+→ Discuss trade-offs between database types (relational, NoSQL, graph, etc.) based on these requirements.
+→ Select the most suitable database or combination of databases.
+→ Justify your recommendation clearly using logical steps.
+
+Respond in a structured, clear, and concise format.
