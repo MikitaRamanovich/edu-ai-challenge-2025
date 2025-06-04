@@ -1,20 +1,23 @@
 {
-    "summary": "This is a sample summary of the input text, highlighting the main points and key information in a concise manner.",
+    "summary": "The text discusses the rise of remote work, highlighting its benefits such as increased job satisfaction and cost savings, while acknowledging challenges like isolation and productivity issues. Despite these challenges, the text concludes that remote work is becoming a permanent fixture in the workplace, with companies adopting hybrid models and leveraging technology to support remote collaboration.",
     "sentiment": {
-        "classification": "positive",
-        "score": 0.8
+        "classification": "neutral",
+        "score": 0.2
     },
     "metadata": {
-        "word_count": 150,
+        "word_count": 196,
         "key_topics": [
-            "education",
-            "technology",
-            "learning"
+            "remote work",
+            "workplace flexibility",
+            "hybrid work models",
+            "employee satisfaction",
+            "business operations"
         ],
         "emotional_indicators": [
-            "enthusiastic",
-            "optimistic",
-            "supportive"
+            "balanced",
+            "analytical",
+            "forward-looking",
+            "pragmatic"
         ]
     }
 } 
