@@ -1,0 +1,20 @@
+{
+    "summary": "This is a sample summary of the input text, highlighting the main points and key information in a concise manner.",
+    "sentiment": {
+        "classification": "positive",
+        "score": 0.8
+    },
+    "metadata": {
+        "word_count": 150,
+        "key_topics": [
+            "education",
+            "technology",
+            "learning"
+        ],
+        "emotional_indicators": [
+            "enthusiastic",
+            "optimistic",
+            "supportive"
+        ]
+    }
+} 

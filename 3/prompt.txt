@@ -1,0 +1,27 @@
+Please analyze the following text and provide a comprehensive analysis in JSON format. Your response should include:
+
+1. A concise summary (maximum 3 sentences) that captures the main points and key information
+2. A sentiment analysis with:
+   - Classification (positive, neutral, or negative)
+   - Numerical score (-1 to +1, where -1 is very negative, 0 is neutral, and +1 is very positive)
+3. Additional metadata including:
+   - Word count of original text
+   - Key topics identified
+   - Emotional tone indicators
+
+Format your response as a valid JSON object with the following structure:
+{
+    "summary": "string",
+    "sentiment": {
+        "classification": "string",
+        "score": number
+    },
+    "metadata": {
+        "word_count": number,
+        "key_topics": ["string"],
+        "emotional_indicators": ["string"]
+    }
+}
+
+Text to analyze:
+[Insert the content from task_3_input.docx here] 
