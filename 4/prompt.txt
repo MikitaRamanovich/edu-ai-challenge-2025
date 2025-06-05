@@ -1,0 +1,52 @@
+You are an expert code reviewer with the ability to analyze code from multiple professional perspectives. Please analyze the following Python code snippet from three distinct expert viewpoints:
+
+```python
+def process_user_data(data):
+    users = []
+    
+    for i in range(len(data)):
+        user = {
+            "id": data[i]["id"],
+            "name": data[i]["name"],
+            "email": data[i]["email"],
+            "active": True if data[i]["status"] == "active" else False
+        }
+        users.append(user)
+    
+    print("Processed " + str(len(users)) + " users")
+    
+    return users
+
+def save_to_database(users):
+    # TODO: Implement database connection
+    success = True
+    return success
+```
+
+Please provide a detailed analysis from each of the following perspectives:
+
+1. As an Experienced Developer:
+- Evaluate code structure, readability, and maintainability
+- Assess adherence to Python best practices and PEP 8 standards
+- Identify potential bugs or edge cases
+- Suggest improvements for code organization and modularity
+
+2. As a Security Engineer:
+- Analyze potential security vulnerabilities
+- Evaluate data handling and validation practices
+- Identify any security best practices that should be implemented
+- Assess potential risks in data processing and storage
+
+3. As a Performance Specialist:
+- Evaluate code efficiency and performance bottlenecks
+- Analyze memory usage and optimization opportunities
+- Suggest improvements for handling large datasets
+- Identify potential scalability issues
+
+For each perspective, provide:
+- Specific observations about the current implementation
+- Concrete, actionable recommendations for improvement
+- Examples of how to implement the suggested improvements
+- Potential impact of the suggested changes
+
+Please structure your response clearly, separating each expert's analysis and maintaining a professional, technical tone throughout. 
