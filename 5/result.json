@@ -1,0 +1,48 @@
+{
+  "feedback1": {
+    "sentiment": "Negative",
+    "isRelevant": true,
+    "mainSubject": "Gaming mouse",
+    "positives": [],
+    "painPoints": [
+      "Sensor tracking issues at 8000hz",
+      "Dongle malfunction on first unit",
+      "High price point for issues"
+    ],
+    "improvementSuggestions": [
+      "Fix sensor tracking stability",
+      "Improve dongle reliability",
+      "Consider price adjustment given quality issues"
+    ],
+    "featuresMentioned": [
+      "Sensor",
+      "Polling rate (8000hz)",
+      "Dongle",
+      "Price"
+    ],
+    "userExpertise": "Experienced"
+  },
+  "feedback2": {
+    "sentiment": "Neutral",
+    "isRelevant": true,
+    "mainSubject": "Product value proposition",
+    "positives": [
+      "No flaws in product",
+      "Good performance"
+    ],
+    "painPoints": [
+      "High price point",
+      "Overpriced compared to alternatives"
+    ],
+    "improvementSuggestions": [
+      "Consider price reduction",
+      "Add more value-adding features to justify price"
+    ],
+    "featuresMentioned": [
+      "Price",
+      "Performance",
+      "Specifications"
+    ],
+    "userExpertise": "Experienced"
+  }
+} 
