@@ -21,27 +21,27 @@ def search_products(query: str, products: List[Dict[str, Any]]) -> List[Dict[str
     # Define the function schema for product filtering
     functions = [{
         "name": "filter_products",
-        "description": "Filter products based on user preferences",
+        "description": "Filter products based on user preferences and return matching products",
         "parameters": {
             "type": "object",
             "properties": {
-                "category": {
-                    "type": "string",
-                    "description": "Product category (Electronics, Fitness, Kitchen, Books, Clothing)"
-                },
-                "max_price": {
-                    "type": "number",
-                    "description": "Maximum price of the product"
-                },
-                "min_rating": {
-                    "type": "number",
-                    "description": "Minimum rating of the product (1-5)"
-                },
-                "in_stock": {
-                    "type": "boolean",
-                    "description": "Whether the product should be in stock"
+                "matching_products": {
+                    "type": "array",
+                    "description": "List of products that match the user's criteria",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "name": {"type": "string"},
+                            "category": {"type": "string"},
+                            "price": {"type": "number"},
+                            "rating": {"type": "number"},
+                            "in_stock": {"type": "boolean"}
+                        },
+                        "required": ["name", "category", "price", "rating", "in_stock"]
+                    }
                 }
-            }
+            },
+            "required": ["matching_products"]
         }
     }]
 
@@ -49,31 +49,35 @@ def search_products(query: str, products: List[Dict[str, Any]]) -> List[Dict[str
     response = client.chat.completions.create(
         model="gpt-4.1-mini",
         messages=[
-            {"role": "system", "content": "You are a helpful assistant that helps users find products based on their preferences."},
+            {"role": "system", "content": "You are a helpful assistant that helps users find products based on their preferences. You have access to the following products: " + json.dumps(products) + "\nPlease return only products that exactly match the user's criteria. Each product must include all required fields: name, category, price, rating, and in_stock."},
             {"role": "user", "content": f"Find products based on this request: {query}"}
         ],
         functions=functions,
         function_call={"name": "filter_products"}
     )
 
-    # Extract the function call parameters
-    function_call = response.choices[0].message.function_call
-    filter_params = json.loads(function_call.arguments)
-
-    # Apply the filters to the products
-    filtered_products = []
-    for product in products:
-        if (filter_params.get('category') and product['category'] != filter_params['category']):
-            continue
-        if (filter_params.get('max_price') and product['price'] > filter_params['max_price']):
-            continue
-        if (filter_params.get('min_rating') and product['rating'] < filter_params['min_rating']):
-            continue
-        if (filter_params.get('in_stock') is not None and product['in_stock'] != filter_params['in_stock']):
-            continue
-        filtered_products.append(product)
-
-    return filtered_products
+    try:
+        # Extract the function call parameters
+        function_call = response.choices[0].message.function_call
+        result = json.loads(function_call.arguments)
+        
+        # Validate the response format
+        if not isinstance(result.get("matching_products"), list):
+            raise ValueError("Invalid response format: matching_products must be a list")
+            
+        # Validate each product in the response
+        for product in result["matching_products"]:
+            required_fields = ["name", "category", "price", "rating", "in_stock"]
+            for field in required_fields:
+                if field not in product:
+                    raise ValueError(f"Invalid product format: missing required field '{field}'")
+                if not isinstance(product[field], (str, int, float, bool)):
+                    raise ValueError(f"Invalid product format: field '{field}' has incorrect type")
+        
+        return result["matching_products"]
+    except Exception as e:
+        print(f"Error processing API response: {str(e)}")
+        return []
 
 def display_products(products: List[Dict[str, Any]]):
     """Display the filtered products in a formatted way."""
