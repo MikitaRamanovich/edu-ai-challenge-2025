@@ -5,6 +5,7 @@ import json
 from collections import Counter
 from dotenv import load_dotenv
 import openai
+from mutagen import File as MutagenFile
 
 # Load environment variables
 load_dotenv()
@@ -17,12 +18,11 @@ openai.api_key = OPENAI_API_KEY
 # Helper: get audio duration (requires ffmpeg)
 def get_audio_duration(filename):
     try:
-        import subprocess
-        result = subprocess.run([
-            'ffprobe', '-v', 'error', '-show_entries',
-            'format=duration', '-of', 'default=noprint_wrappers=1:nokey=1', filename
-        ], stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        return float(result.stdout)
+        audio = MutagenFile(filename)
+        if audio is not None and audio.info is not None:
+            return audio.info.length
+        else:
+            return None
     except Exception:
         return None
 
